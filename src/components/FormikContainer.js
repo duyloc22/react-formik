@@ -10,30 +10,44 @@ function FormikContainer() {
             value: "",
         },
         {
-            key: "Options 1",
+            key: "Option 1",
             value: "Value 1",
         },
         {
-            key: "Options 2",
+            key: "Option 2",
             value: "Value 2",
         },
         {
-            key: "Options 3",
+            key: "Option 3",
             value: "Value 3",
         },
     ];
     const radioValues = [
         {
-            key: "Options 1",
+            key: "Option 1",
             value: "Radio 1",
         },
         {
-            key: "Options 2",
+            key: "Option 2",
             value: "Radio 2",
         },
         {
-            key: "Options 3",
+            key: "Option 3",
             value: "Radio 3",
+        },
+    ];
+    const checkboxValues = [
+        {
+            key: "Option 1",
+            value: "Checkbox 1",
+        },
+        {
+            key: "Option 2",
+            value: "Checkbox 2",
+        },
+        {
+            key: "Option 3",
+            value: "Checkbox 3",
         },
     ];
     const initialValues = {
@@ -41,12 +55,14 @@ function FormikContainer() {
         description: "",
         selectOption: "",
         radioOption: "",
+        checkboxOption: [],
     };
     const validationSchema = Yup.object({
         email: Yup.string().required("Required"),
         description: Yup.string().required("Required"),
         selectOption: Yup.string().required("Required"),
         radioOption: Yup.string().required("Required"),
+        checkboxOption: Yup.array().min(1, "Required"),
     });
     const onSubmit = (values) => console.log("Form data ", values);
     return (
@@ -57,6 +73,7 @@ function FormikContainer() {
                     <FormikControl control="textarea" type="text" label="Description" name="description" />
                     <FormikControl control="select" label="Select Topic" name="selectOption" options={optionsValues} />
                     <FormikControl control="radio" label="Radio Topic" name="radioOption" options={radioValues} />
+                    <FormikControl control="checkbox" label="Radio Topic" name="checkboxOption" options={checkboxValues} />
                     <button type="submit">Submit</button>
                 </Form>
             )}
